@@ -62,7 +62,7 @@ public class MembersServices {
 
         return membersDto;
     }
-
+    @CacheEvict(value = "members", allEntries = true)
     public Members create(Members members) {
 
         if (membersRepository.existsByEmail(members.getEmail())) {
@@ -74,7 +74,7 @@ public class MembersServices {
 
 
     }
-    @CacheEvict("members")
+
     public MembersDto update(Long Id, Members members) {
 
         Members existing = membersRepository.findById(Id)
